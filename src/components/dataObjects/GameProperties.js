@@ -1,3 +1,5 @@
+// These are useful arrays and objects to help structure the app using the .map and .for
+
 const gameFields = [
   "throne",
   "sword",

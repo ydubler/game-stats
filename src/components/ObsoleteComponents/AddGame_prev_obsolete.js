@@ -1,14 +1,14 @@
 import React from "react";
-import HouseAssignments from "./AddGameComponents/HouseAssignments";
-import RoundNav from "./AddGameComponents/RoundNav";
-import GameInfo from "./AddGameComponents/GameInfo";
-import RoundInfo from "./AddGameComponents/RoundInfo";
+import HouseAssignments from "../AddGameComponents/HouseAssignments";
+import RoundNav from "../AddGameComponents/RoundNav";
+import GameInfo from "../AddGameComponents/GameInfo";
+import RoundInfo from "../AddGameComponents/RoundInfo";
 import {
   gameFields,
   houses,
   gameObject,
   rounds
-} from "./dataObjects/GameProperties";
+} from "../dataObjects/GameProperties";
 
 export default class AddGame extends React.Component {
   constructor(props) {

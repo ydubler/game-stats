@@ -1,6 +1,6 @@
 import React from "react";
-import Game from "./dataObjects/Game";
-import Player from "./dataObjects/Player";
+import Game from "../dataObjects/Game";
+import Player from "../dataObjects/Player";
 
 export default class AddGame extends React.Component {
   constructor(props) {
