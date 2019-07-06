@@ -1,18 +1,18 @@
 const { Pool } = require("pg");
 
 const pool = new Pool({
-  user: "yuridmitridubler",
+  user: "hidden",
   host: "localhost",
-  database: "postgres",
-  password: "",
+  database: "hidden",
+  password: "hidden",
   port: 5432
 });
 
 const gotPool = new Pool({
-  user: "yuridmitridubler",
+  user: "hidden",
   host: "localhost",
-  database: "gotgames",
-  password: "",
+  database: "hidden",
+  password: "hidden",
   port: 5432
 });
 
