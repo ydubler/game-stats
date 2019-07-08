@@ -10,7 +10,7 @@ import AddGame from "./components/AddGame";
 import Nav from "./components/Nav";
 import ViewGame from "./components/ViewGame";
 
-// The BrowserRouter is required to allow URL routing with the Route Object (defined next)
+// The BrowserRouter is required to allow URL routing with the Route Object (imported next)
 import { BrowserRouter } from "react-router-dom";
 
 // The Route object allows us to load the appropriate React-Object based on the supplied URL.

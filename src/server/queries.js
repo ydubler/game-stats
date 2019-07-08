@@ -6,10 +6,10 @@ const { Pool } = require("pg");
 // This pool is used to access one specific database named "gotgames".
 // The "gotgames" database contains all of the information we want.
 const gotPool = new Pool({
-  user: "hidden",
+  user: "yuridmitridubler",
   host: "localhost",
-  database: "hidden",
-  password: "hidden",
+  database: "gotgames",
+  password: "",
   port: 5432
 });
 
