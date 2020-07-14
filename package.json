@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/babel src --out-dir dist/ && webpack",
+    "build": "./node_modules/.bin/babel src --out-dir dist/ && ./node_modules/.bin/webpack",
     "start": "node ./dist/server.js",
     "build-start": "babel src --out-dir dist/  && webpack && node ./dist/server.js",
     "dev-server": "nodemon --exec babel-node src/server/server.js --ignore dist/",
