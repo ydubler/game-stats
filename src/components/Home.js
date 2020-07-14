@@ -35,7 +35,7 @@ export default class Home extends React.Component {
                 float: "left",
                 fontStyle: "italic",
                 fontFamily: "Lucida Console",
-                color: "#A0A0A0"
+                color: "#A0A0A0",
               }}
             >
               &nbsp;&nbsp;&nbsp;&nbsp;WEBSERVER
@@ -43,7 +43,7 @@ export default class Home extends React.Component {
             <div
               style={{ width: "27%", display: "inline", fontWeight: "bold" }}
             >
-              node / Express
+              node / Express / HEROKU
             </div>
             <div
               style={{
@@ -54,7 +54,7 @@ export default class Home extends React.Component {
                 fontWeight: "bold",
                 fontFamily: "Courier New",
                 color: "#A0A0A0",
-                paddingTop: "5px"
+                paddingTop: "5px",
               }}
             >
               (OPERATIONAL)
@@ -69,7 +69,7 @@ export default class Home extends React.Component {
                   fontSize: "12px",
                   fontStyle: "italic",
                   fontFamily: "Lucida Console",
-                  color: "#A0A0A0"
+                  color: "#A0A0A0",
                 }}
               >
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data
@@ -80,7 +80,7 @@ export default class Home extends React.Component {
                   width: "50%",
                   display: "inline",
                   fontSize: "12px",
-                  fontWeight: "bold"
+                  fontWeight: "bold",
                 }}
               >
                 Webpack
@@ -95,7 +95,7 @@ export default class Home extends React.Component {
                   fontSize: "12px",
                   fontStyle: "italic",
                   fontFamily: "Lucida Console",
-                  color: "#A0A0A0"
+                  color: "#A0A0A0",
                 }}
               >
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Javascript
@@ -105,7 +105,7 @@ export default class Home extends React.Component {
                 style={{
                   display: "inline",
                   fontSize: "12px",
-                  fontWeight: "bold"
+                  fontWeight: "bold",
                 }}
               >
                 Babel
@@ -120,7 +120,7 @@ export default class Home extends React.Component {
                   fontSize: "12px",
                   fontStyle: "italic",
                   fontFamily: "Lucida Console",
-                  color: "#A0A0A0"
+                  color: "#A0A0A0",
                 }}
               >
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Database
@@ -131,7 +131,7 @@ export default class Home extends React.Component {
                   width: "50%",
                   display: "inline",
                   fontSize: "12px",
-                  fontWeight: "bold"
+                  fontWeight: "bold",
                 }}
               >
                 node-pg
@@ -146,7 +146,7 @@ export default class Home extends React.Component {
                   fontSize: "12px",
                   fontStyle: "italic",
                   fontFamily: "Lucida Console",
-                  color: "#A0A0A0"
+                  color: "#A0A0A0",
                 }}
               >
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On
@@ -157,7 +157,7 @@ export default class Home extends React.Component {
                   width: "50%",
                   display: "inline",
                   fontSize: "12px",
-                  fontWeight: "bold"
+                  fontWeight: "bold",
                 }}
               >
                 nodemon
@@ -172,7 +172,7 @@ export default class Home extends React.Component {
                 float: "left",
                 fontFamily: "Lucida Console",
                 fontStyle: "italic",
-                color: "#A0A0A0"
+                color: "#A0A0A0",
               }}
             >
               &nbsp;&nbsp;&nbsp;&nbsp;DATABASE
@@ -191,7 +191,7 @@ export default class Home extends React.Component {
                 fontWeight: "bold",
                 fontFamily: "Courier New",
                 color: "#A0A0A0",
-                paddingTop: "5px"
+                paddingTop: "5px",
               }}
             >
               (OPERATIONAL)
@@ -207,7 +207,7 @@ export default class Home extends React.Component {
                 float: "left",
                 fontStyle: "italic",
                 fontFamily: "Lucida Console",
-                color: "#A0A0A0"
+                color: "#A0A0A0",
               }}
             >
               &nbsp;&nbsp;&nbsp;&nbsp;UI LIBRARY
@@ -226,7 +226,7 @@ export default class Home extends React.Component {
                 float: "left",
                 fontStyle: "italic",
                 fontFamily: "Lucida Console",
-                color: "#A0A0A0"
+                color: "#A0A0A0",
               }}
             >
               &nbsp;&nbsp;&nbsp;&nbsp;DATA VIS
@@ -244,7 +244,7 @@ export default class Home extends React.Component {
                 fontSize: "10px",
                 fontWeight: "bold",
                 fontFamily: "Courier New",
-                paddingTop: "5px"
+                paddingTop: "5px",
               }}
             >
               <a href="/viewGame/1">(example)</a>
@@ -252,14 +252,6 @@ export default class Home extends React.Component {
           </div>
           <br />
           <br />
-          <div style={{ fontSize: "12px" }}>
-            NOTE: This localhost server is being exposed to the internet by
-            serveo.net, an SSH server that performs remote port forwarding.
-            Serveo.net returns a potentially different url everytime its service
-            is requested. For this reason, the url of this server may change on
-            a day-to-day basis. Please request the current url at any time if
-            you would like to view the website.
-          </div>
         </div>
       </div>
     );
