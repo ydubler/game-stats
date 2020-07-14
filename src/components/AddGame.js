@@ -7,7 +7,7 @@ import {
   gameFields,
   houses,
   gameObject,
-  rounds
+  rounds,
 } from "./dataObjects/GameProperties";
 
 export default class AddGame extends React.Component {
@@ -34,13 +34,13 @@ export default class AddGame extends React.Component {
       targaryenId: -2,
       dornId: -1,
       tyrellId: -1,
-      game: {}
+      game: {},
     };
 
     // Create the data
-    rounds.forEach(round => {
-      houses.forEach(house => {
-        gameFields.forEach(field => {
+    rounds.forEach((round) => {
+      houses.forEach((house) => {
+        gameFields.forEach((field) => {
           this.state.game["round" + round + "_" + house + "_" + field] = 0;
         });
         this.state.game["round" + round + "_" + house + "_playerNotes"] = "";
@@ -70,7 +70,7 @@ export default class AddGame extends React.Component {
         landTerritories: 2,
         seaTerritories: 1,
         forcedMuster: 0,
-        playerNotes: ""
+        playerNotes: "",
       },
       greyjoy: {
         throne: 5,
@@ -93,7 +93,7 @@ export default class AddGame extends React.Component {
         landTerritories: 2,
         seaTerritories: 1,
         forcedMuster: 0,
-        playerNotes: ""
+        playerNotes: "",
       },
       stark: {
         throne: 3,
@@ -116,7 +116,7 @@ export default class AddGame extends React.Component {
         landTerritories: 2,
         seaTerritories: 1,
         forcedMuster: 0,
-        playerNotes: ""
+        playerNotes: "",
       },
       arryn: {
         throne: 7,
@@ -139,7 +139,7 @@ export default class AddGame extends React.Component {
         landTerritories: 2,
         seaTerritories: 0,
         forcedMuster: 0,
-        playerNotes: ""
+        playerNotes: "",
       },
       baratheon: {
         throne: 1,
@@ -162,7 +162,7 @@ export default class AddGame extends React.Component {
         landTerritories: 2,
         seaTerritories: 1,
         forcedMuster: 0,
-        playerNotes: ""
+        playerNotes: "",
       },
       targaryen: {
         throne: 7,
@@ -187,7 +187,7 @@ export default class AddGame extends React.Component {
         landTerritories: 4,
         seaTerritories: 1,
         forcedMuster: 0,
-        playerNotes: ""
+        playerNotes: "",
       },
       dorn: {
         throne: 4,
@@ -210,7 +210,7 @@ export default class AddGame extends React.Component {
         landTerritories: 2,
         seaTerritories: 1,
         forcedMuster: 0,
-        playerNotes: ""
+        playerNotes: "",
       },
       tyrell: {
         throne: 6,
@@ -233,8 +233,8 @@ export default class AddGame extends React.Component {
         landTerritories: 2,
         seaTerritories: 1,
         forcedMuster: 0,
-        playerNotes: ""
-      }
+        playerNotes: "",
+      },
     };
     this.vassalStartingValues = {
       lannister: {
@@ -258,7 +258,7 @@ export default class AddGame extends React.Component {
         landTerritories: 3,
         seaTerritories: 1,
         forcedMuster: 0,
-        playerNotes: "'Clegane at your back...'"
+        playerNotes: "'Clegane at your back...'",
       },
       greyjoy: {
         throne: 7,
@@ -281,7 +281,7 @@ export default class AddGame extends React.Component {
         landTerritories: 2,
         seaTerritories: 2,
         forcedMuster: 0,
-        playerNotes: "'My fleet is invincible!'"
+        playerNotes: "'My fleet is invincible!'",
       },
       stark: {
         throne: 7,
@@ -304,7 +304,7 @@ export default class AddGame extends React.Component {
         landTerritories: 5,
         seaTerritories: 1,
         forcedMuster: 0,
-        playerNotes: "'I have been forged by winter.'"
+        playerNotes: "'I have been forged by winter.'",
       },
       arryn: {
         throne: 7,
@@ -327,7 +327,7 @@ export default class AddGame extends React.Component {
         landTerritories: 3,
         seaTerritories: 2,
         forcedMuster: 0,
-        playerNotes: "'My lands are impenetrable.'"
+        playerNotes: "'My lands are impenetrable.'",
       },
       baratheon: {
         throne: 7,
@@ -350,7 +350,7 @@ export default class AddGame extends React.Component {
         landTerritories: 3,
         seaTerritories: 2,
         forcedMuster: 0,
-        playerNotes: "'I love whores and boars.'"
+        playerNotes: "'I love whores and boars.'",
       },
       targaryen: {
         throne: 7,
@@ -373,7 +373,7 @@ export default class AddGame extends React.Component {
         landTerritories: 3,
         seaTerritories: 2,
         forcedMuster: 0,
-        playerNotes: "Targaryen can't be a vassal."
+        playerNotes: "Targaryen can't be a vassal.",
       },
       dorn: {
         throne: 7,
@@ -396,7 +396,7 @@ export default class AddGame extends React.Component {
         landTerritories: 4,
         seaTerritories: 2,
         forcedMuster: 0,
-        playerNotes: "'House Sunspear shall take justice.'"
+        playerNotes: "'House Sunspear shall take justice.'",
       },
       tyrell: {
         throne: 7,
@@ -419,8 +419,8 @@ export default class AddGame extends React.Component {
         landTerritories: 4,
         seaTerritories: 1,
         forcedMuster: 0,
-        playerNotes: "'Roselove sends his regards.'"
-      }
+        playerNotes: "'Roselove sends his regards.'",
+      },
     };
 
     // FUNCTION BINDINGS
@@ -437,30 +437,30 @@ export default class AddGame extends React.Component {
 
   fetchPlayers() {
     fetch("/getPlayers")
-      .then(response => {
+      .then((response) => {
         console.log("App fetching: " + JSON.stringify(response));
         return response.json();
       })
-      .then(data => this.setState({ players: data }));
+      .then((data) => this.setState({ players: data }));
   }
 
   fetchGameCount() {
     fetch("/getGamesCount")
-      .then(response => {
+      .then((response) => {
         console.log("App fetching: " + JSON.stringify(response));
         return response.json();
       })
-      .then(data => this.setState({ gameId: data[0].count }));
+      .then((data) => this.setState({ gameId: data[0].count }));
   }
 
   onClick_IncrementRound() {
     if (this.state.currentRound < 10) {
-      this.setState(state => {
+      this.setState((state) => {
         // Important: read `state` instead of `this.state` when updating.
         return { currentRound: state.currentRound + 1 };
       });
     } else if (this.state.currentRound === 10) {
-      this.setState(state => {
+      this.setState((state) => {
         // Important: read `state` instead of `this.state` when updating.
         return { currentRound: 0 };
       });
@@ -478,12 +478,12 @@ export default class AddGame extends React.Component {
 
   onClick_DecrementRound() {
     if (this.state.currentRound > 0) {
-      this.setState(state => {
+      this.setState((state) => {
         // Important: read `state` instead of `this.state` when updating.
         return { currentRound: state.currentRound - 1 };
       });
     } else if (this.state.currentRound === 0) {
-      this.setState(state => {
+      this.setState((state) => {
         // Important: read `state` instead of `this.state` when updating.
         return { currentRound: 10 };
       });
@@ -522,14 +522,14 @@ export default class AddGame extends React.Component {
         targaryenId: document.getElementById("houseAssignment_targaryenPlayer")
           .value,
         dornId: document.getElementById("houseAssignment_dornPlayer").value,
-        tyrellId: document.getElementById("houseAssignment_tyrellPlayer").value
+        tyrellId: document.getElementById("houseAssignment_tyrellPlayer").value,
       });
     } else {
-      this.setState(prevState => {
+      this.setState((prevState) => {
         const newState = { ...prevState.game };
 
-        houses.forEach(house => {
-          gameFields.forEach(field => {
+        houses.forEach((house) => {
+          gameFields.forEach((field) => {
             let roundNum = "round" + this.state.currentRound;
             let elementId = roundNum + "_" + field + "_" + house;
             let stateId =
@@ -543,21 +543,21 @@ export default class AddGame extends React.Component {
 
         // Important: read `state` instead of `this.state` when updating.
         return {
-          game: newState
+          game: newState,
         };
       });
     }
   }
 
   loadFromPrevious() {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       // newState = { ...prevState };
 
       let newState = { ...prevState.game };
       console.log("prevstate.game" + JSON.stringify({ ...prevState.game }));
 
-      houses.forEach(houseName => {
-        gameFields.forEach(fieldName => {
+      houses.forEach((houseName) => {
+        gameFields.forEach((fieldName) => {
           let prevStateId =
             "round" +
             (this.state.currentRound - 1) +
@@ -726,7 +726,7 @@ export default class AddGame extends React.Component {
   updateRound1Data(event) {
     console.log("a vassal has been detected");
 
-    houses.forEach(house => {
+    houses.forEach((house) => {
       let elId = "houseAssignment_" + house + "Player";
 
       if (event.target.id === elId) {
@@ -736,11 +736,11 @@ export default class AddGame extends React.Component {
         if (event.target.value == -1) {
           console.log("Updating " + house + " units to vassal start");
 
-          this.setState(prevState => {
+          this.setState((prevState) => {
             let newState = { ...prevState.game };
 
-            houses.forEach(houseName => {
-              gameFields.forEach(fieldName => {
+            houses.forEach((houseName) => {
+              gameFields.forEach((fieldName) => {
                 newState[
                   "round1_" + houseName + "_" + fieldName
                 ] = this.vassalStartingValues[houseName][fieldName];
@@ -748,7 +748,7 @@ export default class AddGame extends React.Component {
             });
 
             return {
-              game: newState
+              game: newState,
             };
           });
 
@@ -758,11 +758,11 @@ export default class AddGame extends React.Component {
         } else {
           console.log("Updating " + house + " units to player start");
 
-          this.setState(prevState => {
+          this.setState((prevState) => {
             let newState = { ...prevState.game };
 
-            houses.forEach(houseName => {
-              gameFields.forEach(fieldName => {
+            houses.forEach((houseName) => {
+              gameFields.forEach((fieldName) => {
                 newState[
                   "round1_" + houseName + "_" + fieldName
                 ] = this.playerStartingValues[houseName][fieldName];
@@ -809,7 +809,7 @@ export default class AddGame extends React.Component {
               gameNotes: this.state.gameNotes,
               month: this.state.month,
               day: this.state.day,
-              year: this.state.year
+              year: this.state.year,
             }}
           />
           <br />
@@ -829,7 +829,7 @@ export default class AddGame extends React.Component {
               targaryen: this.state.targaryenId,
               dorn: this.state.dornId,
               tyrell: this.state.tyrellId,
-              winner: this.state.winner
+              winner: this.state.winner,
             }}
             finalRound={this.state.finalRound}
           />
@@ -851,7 +851,7 @@ export default class AddGame extends React.Component {
               baratheon: this.state.baratheonId,
               targaryen: this.state.targaryenId,
               dorn: this.state.dornId,
-              tyrell: this.state.tyrellId
+              tyrell: this.state.tyrellId,
             }}
             players={this.state.players}
           />
@@ -873,7 +873,7 @@ export default class AddGame extends React.Component {
               baratheon: this.state.baratheonId,
               targaryen: this.state.targaryenId,
               dorn: this.state.dornId,
-              tyrell: this.state.tyrellId
+              tyrell: this.state.tyrellId,
             }}
             players={this.state.players}
           />
@@ -904,7 +904,7 @@ export default class AddGame extends React.Component {
                   baratheonId: this.state.baratheonId,
                   targaryenId: this.state.targaryenId,
                   dornId: this.state.dornId,
-                  tyrellId: this.state.tyrellId
+                  tyrellId: this.state.tyrellId,
                 })}
               />
               <input
