@@ -54,7 +54,7 @@ CREATE TABLE public.games_v0 (
 );
 
 
-ALTER TABLE public.games_v0 OWNER TO yuridmitridubler;
+ALTER TABLE public.games_v0 OWNER TO gfzxrlcsholani;
 
 --
 -- Name: games_v1; Type: TABLE; Schema: public; Owner: yuridmitridubler
@@ -81,7 +81,7 @@ CREATE TABLE public.games_v1 (
 );
 
 
-ALTER TABLE public.games_v1 OWNER TO yuridmitridubler;
+ALTER TABLE public.games_v1 OWNER TO gfzxrlcsholani;
 
 --
 -- Name: players; Type: TABLE; Schema: public; Owner: yuridmitridubler
@@ -94,7 +94,7 @@ CREATE TABLE public.players (
 );
 
 
-ALTER TABLE public.players OWNER TO yuridmitridubler;
+ALTER TABLE public.players OWNER TO gfzxrlcsholani;
 
 --
 -- Data for Name: games_v0; Type: TABLE DATA; Schema: public; Owner: yuridmitridubler
