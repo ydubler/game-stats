@@ -1,6 +1,14 @@
 import React from "react";
 
 export default class Nav extends React.Component {
+  componentDidMount() {
+    console.log("navbar mounted.");
+  }
+
+  componentWillUnmount() {
+    console.log("navbar about to unmount.");
+  }
+
   render() {
     return (
       <div>

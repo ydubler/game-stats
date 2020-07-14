@@ -1,0 +1,11 @@
+"use strict";var _react=_interopRequireDefault(require("react"));var _reactDom=_interopRequireDefault(require("react-dom"));var _Home=_interopRequireDefault(require("./components/Home"));var _Players=_interopRequireDefault(require("./components/Players"));var _Games=_interopRequireDefault(require("./components/Games"));var _AddGame=_interopRequireDefault(require("./components/AddGame"));var _Nav=_interopRequireDefault(require("./components/Nav"));var _ViewGame=_interopRequireDefault(require("./components/ViewGame"));var _reactRouterDom=require("react-router-dom");var _http=require("http");function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{"default":obj};}// CRITICAL IMPORTS
+// Import React
+// Import ReactDOM (document object model)
+// REACT COMPONENTS
+// The BrowserRouter is required to allow URL routing with the Route Object (imported next)
+// The Route object allows us to load the appropriate React-Object based on the supplied URL.
+// Unsure why I imported this
+// The hydrate function populates the container element rendered by ReactDomServer (in server.js).
+// All of the pages render the <Nav /> element, and the BrowserRouter/Route objects emplace
+// the remainder of the specific page being visited.
+_reactDom["default"].hydrate(/*#__PURE__*/_react["default"].createElement("div",null,/*#__PURE__*/_react["default"].createElement(_Nav["default"],null),/*#__PURE__*/_react["default"].createElement(_reactRouterDom.BrowserRouter,null,/*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route,{exact:true,path:"/",component:_Home["default"]}),/*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route,{exact:true,path:"/players",component:_Players["default"]}),/*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route,{exact:true,path:"/games",component:_Games["default"]}),/*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route,{exact:true,path:"/addGame",component:_AddGame["default"]}),/*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route,{exact:true,path:"/viewGame/:id",component:_ViewGame["default"]}))),document.getElementById("mountNode"));

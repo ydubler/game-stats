@@ -96,7 +96,7 @@ server.post("/addPlayer", urlEncodedParser, (request, response, next) => {
     [
       request.body.playerId,
       request.body.permanentName,
-      request.body.displayName
+      request.body.displayName,
     ],
     (err, res) => {
       if (err) return console.log(err); // if there is an error, log the error
@@ -285,7 +285,7 @@ server.post(
         gameInfo.targaryenId,
         gameInfo.dornId,
         gameInfo.tyrellId,
-        request.body.gameData
+        request.body.gameData,
       ],
       (err, res) => {
         if (err) console.log(err);
