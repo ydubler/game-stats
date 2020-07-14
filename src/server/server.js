@@ -74,10 +74,21 @@ server.get("/players", (request, response, next) => {
 server.get("/getPlayers", (request, response, next) => {
   console.log('server.get("/getPlayers") (DATABASE QUERY)'); // log the action to the server console
 
-  // Query the database, asking for all of the players sorted by id
-  gotPool.query("SELECT * FROM players ORDER BY players.id", (err, res) => {
-    if (err) return console.log(err); // if there is an error, log the error
-    response.json(res.rows); // if there is no error, put the data in the response object in JSON format
+  const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  const query = "SELECT * FROM players ORDER BY players.id";
+
+  client.connect();
+
+  client.query(query, (err, res) => {
+    if (err) throw err;
+    response.json(res.rows);
+    client.end();
   });
 });
 
