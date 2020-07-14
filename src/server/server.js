@@ -12,6 +12,9 @@ const bodyParser = require("body-parser"); // Import the body-parser (helps hand
 // Create an express server
 const server = express();
 
+// Get the port
+const PORT = process.env.PORT || 3000;
+
 // Use the URL Encoded Parser. This lets us access objects in client REQUESTs more easily.
 const urlEncodedParser = bodyParser.urlencoded({ extended: false });
 
@@ -299,4 +302,4 @@ server.post(
 );
 
 // Cause the server to listen on the supplied port, and tell the console that it is running.
-server.listen(4040, () => console.log("Server is running..."));
+server.listen(PORT, () => console.log("Server is running..."));
