@@ -2,6 +2,7 @@
 import express from "express"; // import express (easy server setup module)
 import React from "react"; // import react
 import ReactDOMServer from "react-dom/server"; // import react-dom/server
+const { Client } = require("pg");
 
 // REACT COMPONENTS
 import Nav from "../components/Nav"; // Import the top navigation object
@@ -93,18 +94,24 @@ server.post("/addPlayer", urlEncodedParser, (request, response, next) => {
       request.body.playerId
   );
 
-  // Query the database, inserting the player into the database
-  gotPool.query(
-    `INSERT INTO players(id, name, displayName) VALUES($1, $2, $3);`,
-    [
-      request.body.playerId,
-      request.body.permanentName,
-      request.body.displayName,
-    ],
-    (err, res) => {
-      if (err) return console.log(err); // if there is an error, log the error
+  const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  const query = `INSERT INTO players(id, name, displayName) VALUES(${request.body.playerId}, ${request.body.permanentName}, ${request.body.displayName});`;
+
+  client.connect();
+
+  client.query(query, (err, res) => {
+    if (err) throw err;
+    for (let row of res.rows) {
+      console.log(JSON.stringify(row));
     }
-  );
+    client.end();
+  });
 
   // Redirect the client browser to "/players"
   // This will also likely update the players list
@@ -124,12 +131,24 @@ server.post(
         request.body.playerId
     );
 
-    // Query the database, updating the displayName of the player with the supplied id
-    gotPool.query(
-      `UPDATE players SET displayname=$1 WHERE id=$2`,
-      [request.body.playersNewName, request.body.playerId],
-      (err, res) => {}
-    );
+    const client = new Client({
+      connectionString: process.env.DATABASE_URL,
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    });
+
+    const query = `UPDATE players SET displayname=${request.body.playersNewName} WHERE id=${request.body.playerId}`;
+
+    client.connect();
+
+    client.query(query, (err, res) => {
+      if (err) throw err;
+      for (let row of res.rows) {
+        console.log(JSON.stringify(row));
+      }
+      client.end();
+    });
 
     // Redirect the client browser to "/players"
     // This will also likely update the players list
@@ -163,10 +182,21 @@ server.get("/games", (request, response, next) => {
 server.get("/getGamesCount", (request, response, next) => {
   console.log('server.get("/getGamesCount")'); // log the action to the server console
 
-  // Query the database, asking it to return the total number of games in the database
-  gotPool.query("SELECT COUNT(*) FROM games_v1", (err, res) => {
-    if (err) return console.log(err); // if there is an error, log the error
-    response.json(res.rows); // if there is no error, put the data in the response object in JSON format
+  const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  const query = "SELECT COUNT(*) FROM games_v1";
+
+  client.connect();
+
+  client.query(query, (err, res) => {
+    if (err) throw err;
+    response.json(res.rows);
+    client.end();
   });
 });
 
@@ -175,14 +205,23 @@ server.get("/getGamesCount", (request, response, next) => {
 server.get("/getGames", (request, response, next) => {
   console.log('server.get("/getGames") (DATABASE QUERY)'); // log the action to the server console
 
-  // Query the database, asking it to return superficial information about ALL of the games in the database.
-  gotPool.query(
-    "SELECT id, name, notes,finalround, winner,  year, month, day, lannister, greyjoy, stark, arryn, baratheon, targaryen, dorn, tyrell FROM games_v1 ORDER BY games_v1.id",
-    (err, res) => {
-      if (err) return console.log(err); // if there is an error, log it
-      response.json(res.rows); // if there is no error, put the data in the response object in JSON format
-    }
-  );
+  const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  const query =
+    "SELECT id, name, notes,finalround, winner,  year, month, day, lannister, greyjoy, stark, arryn, baratheon, targaryen, dorn, tyrell FROM games_v1 ORDER BY games_v1.id";
+
+  client.connect();
+
+  client.query(query, (err, res) => {
+    if (err) throw err;
+    response.json(res.rows);
+    client.end();
+  });
 });
 
 // This GET request asks the database to return "deeper" information about a specific game base on it's ID.
@@ -193,15 +232,22 @@ server.get("/getGames/:id", (request, response, next) => {
     'server.get("/getGames/' + request.params.id + '") (DATABASE QUERY)'
   );
 
-  // Query the database, asking it to return all of the deeper information of the game of a certain ID.
-  gotPool.query(
-    "SELECT * FROM games_v1 WHERE games_v1.id=$1 ",
-    [request.params.id],
-    (err, res) => {
-      if (err) return console.log(err); // if there is an error, log it
-      response.json(res.rows); // if there is no error, put the data in the response object in JSON format
-    }
-  );
+  const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  const query = `SELECT * FROM games_v1 WHERE games_v1.id=${request.params.id}`;
+
+  client.connect();
+
+  client.query(query, (err, res) => {
+    if (err) throw err;
+    response.json(res.rows);
+    client.end();
+  });
 });
 
 // -- VIEW GAME -- /////////////////////////////////////////////////////////////////////
@@ -268,32 +314,21 @@ server.post(
         request.body.gameData
     );
 
-    // Query the database, inserting all of the information of the game into it
-    gotPool.query(
-      `INSERT INTO games_v1 (id, name, notes, finalround, winner, day, month, year, lannister, greyjoy, stark, arryn, baratheon, targaryen, dorn, tyrell, gamedata) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17)`,
-      [
-        gameInfo.gameId,
-        gameInfo.name,
-        gameInfo.gameNotes,
-        gameInfo.finalRound,
-        gameInfo.winner,
-        gameInfo.day,
-        gameInfo.month,
-        gameInfo.year,
-        gameInfo.lannisterId,
-        gameInfo.greyjoyId,
-        gameInfo.starkId,
-        gameInfo.arrynId,
-        gameInfo.baratheonId,
-        gameInfo.targaryenId,
-        gameInfo.dornId,
-        gameInfo.tyrellId,
-        request.body.gameData,
-      ],
-      (err, res) => {
-        if (err) console.log(err);
-      }
-    );
+    const client = new Client({
+      connectionString: process.env.DATABASE_URL,
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    });
+
+    const query = `INSERT INTO games_v1 (id, name, notes, finalround, winner, day, month, year, lannister, greyjoy, stark, arryn, baratheon, targaryen, dorn, tyrell, gamedata) VALUES(${gameInfo.gameId},${gameInfo.name},${gameInfo.gameNotes},${gameInfo.finalRound},${gameInfo.winner},${gameInfo.day},${gameInfo.month},${gameInfo.year},${gameInfo.lannisterId},${gameInfo.greyjoyId},${gameInfo.starkId},${gameInfo.arrynId},${gameInfo.baratheonId},${gameInfo.targaryenId},${gameInfo.dornId},${gameInfo.tyrellId},${request.body.gameData})`;
+
+    client.connect();
+
+    client.query(query, (err, res) => {
+      if (err) throw err;
+      client.end();
+    });
 
     // Redirect the client browser to "/games"
     // This will also likely update the games list
